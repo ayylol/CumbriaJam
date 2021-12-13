@@ -7,7 +7,13 @@
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000167847, 3.8147e-06, -0.0928421 )
 
 [node name="tankard" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7711, -20.5956, 25.4921 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2103, 5.00596, 6.03082 )
 
 [node name="convertor" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.463247, 0.382977, 6.33766 )
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, 6.32357 )
+
+[node name="convertor2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, -3.74709 )
+
+[node name="convertor3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, 16.3656 )
