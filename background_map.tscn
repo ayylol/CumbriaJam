@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://recycling_tank.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://cross_beam.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://beam_pillar.obj" type="ArrayMesh" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="prox_tankard" type="ProximityGroup" parent="."]
+
+[node name="recycling_tank" type="MeshInstance" parent="prox_tankard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14757, 0 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../side_a_crossbeams/cross_beam")
+material/0 = null
+
+[node name="side_a_crossbeams" type="ProximityGroup" parent="prox_tankard"]
+
+[node name="beam_pillar" type="MeshInstance" parent="prox_tankard/side_a_crossbeams"]
+mesh = ExtResource( 3 )
+skeleton = NodePath("../cross_beam")
+material/0 = null
+
+[node name="cross_beam" type="MeshInstance" parent="prox_tankard/side_a_crossbeams"]
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="cross_beam2" type="MeshInstance" parent="prox_tankard/side_a_crossbeams"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.922, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="side_a_crossbeams2" type="ProximityGroup" parent="prox_tankard"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.5822, 0.257587, -15.0578 )
+
+[node name="beam_pillar" type="MeshInstance" parent="prox_tankard/side_a_crossbeams2"]
+mesh = ExtResource( 3 )
+skeleton = NodePath("../cross_beam")
+material/0 = null
+
+[node name="cross_beam" type="MeshInstance" parent="prox_tankard/side_a_crossbeams2"]
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="cross_beam2" type="MeshInstance" parent="prox_tankard/side_a_crossbeams2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.922, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="3" type="ProximityGroup" parent="prox_tankard"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27.6086, 0.257587, -2.47677 )
+
+[node name="beam_pillar" type="MeshInstance" parent="prox_tankard/3"]
+mesh = ExtResource( 3 )
+skeleton = NodePath("../cross_beam")
+material/0 = null
+
+[node name="cross_beam" type="MeshInstance" parent="prox_tankard/3"]
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="cross_beam2" type="MeshInstance" parent="prox_tankard/3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.922, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="side_a_crossbeams3" type="ProximityGroup" parent="prox_tankard"]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -15.0592, 0.257586, 12.4164 )
+
+[node name="beam_pillar" type="MeshInstance" parent="prox_tankard/side_a_crossbeams3"]
+mesh = ExtResource( 3 )
+skeleton = NodePath("../cross_beam")
+material/0 = null
+
+[node name="cross_beam" type="MeshInstance" parent="prox_tankard/side_a_crossbeams3"]
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="cross_beam2" type="MeshInstance" parent="prox_tankard/side_a_crossbeams3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.922, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("")
+material/0 = null
