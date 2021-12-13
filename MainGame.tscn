@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=3]
+rough = true
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3.14364, 0.16657, 2.70353 )
@@ -11,6 +14,8 @@ extents = Vector3( 3.14364, 0.16657, 2.70353 )
 [node name="Spatial" type="Spatial"]
 
 [node name="DebugFloor" type="StaticBody" parent="."]
+transform = Transform( 7.96079, 0, 0, 0, 1, 0, 0, 0, 6.23548, 0, 0, 0 )
+physics_material_override = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DebugFloor"]
 shape = SubResource( 1 )
@@ -21,21 +26,22 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 1.26721e-06, 0.000698131, 0, 0.999998, -0.00181514, -0.000698132, 0.00181514, 0.999998, 0, 2.1923, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74397, 2.41142, 6.91586 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Player"]
-remote_path = NodePath("../../CamRoot")
+remote_path = NodePath("../../Cam")
 update_rotation = false
 update_scale = false
 
-[node name="CamRoot" type="Spatial" parent="."]
-transform = Transform( 1, 1.26721e-06, 0.00069813, 0, 0.999998, -0.00181514, -0.000698132, 0.00181514, 0.999998, 0, 2.1923, 0 )
+[node name="Cam" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74397, 2.41142, 6.91586 )
 script = ExtResource( 2 )
 
-[node name="H" type="Spatial" parent="CamRoot"]
+[node name="H" type="Spatial" parent="Cam"]
 
-[node name="V" type="Spatial" parent="CamRoot/H"]
+[node name="V" type="Spatial" parent="Cam/H"]
 
-[node name="Camera" type="ClippedCamera" parent="CamRoot/H/V"]
+[node name="Camera" type="ClippedCamera" parent="Cam/H/V"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181675, 0, 3.25458 )
+near = 0.01
 process_mode = 1
