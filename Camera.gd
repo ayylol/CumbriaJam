@@ -24,7 +24,9 @@ func _input(event):
 		camrot_v = clamp(camrot_v-event.relative.y,-60,60)
 		
 	if event.is_action_pressed("push"):
-		_player.push(-$H/V/Camera.global_transform.basis.z)
+		_player.hold()
+	elif event.is_action_released("push"):
+		_player.release(-$H/V/Camera.global_transform.basis.z)
 
 func _physics_process(delta):
 	$H.rotation_degrees.y = camrot_h

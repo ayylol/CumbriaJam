@@ -2,18 +2,14 @@
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 
-[sub_resource type="CapsuleShape" id=3]
-radius = 0.265508
-height = 0.212389
-
 [sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.213361
+height = 0.468885
 
 [node name="RigidBody" type="RigidBody"]
 script = ExtResource( 1 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0174009, 0 )
-shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.215185, 0, 0, 0, -7.63385e-09, -0.211312, 0, 0.201942, -1.06806e-08, 0, -0.0189896, 0 )
@@ -23,5 +19,8 @@ material/0 = null
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
