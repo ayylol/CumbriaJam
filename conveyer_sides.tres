@@ -1,0 +1,28 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.341615, 1 )
+colors = PoolColorArray( 0.720497, 0.720497, 0.720497, 1, 0.754193, 0.754193, 0.754193, 1, 0.937502, 0.937502, 0.937502, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+seed = 6
+octaves = 6
+period = 98.6
+persistence = 0.186
+lacunarity = 2.65
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1080
+height = 1080
+seamless = true
+bump_strength = 32.0
+noise = SubResource( 3 )
+
+[resource]
+albedo_color = Color( 0.623529, 0.584314, 0, 1 )
+albedo_texture = SubResource( 2 )
+roughness = 0.0
+roughness_texture = SubResource( 4 )
