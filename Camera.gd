@@ -29,7 +29,7 @@ func _input(event):
 		_player.release(-$H/V/Camera.global_transform.basis.z)
 		
 	if event.is_action_pressed("ui_accept"):
-		_player.compress()
+		_player.stain()
 
 func _physics_process(delta):
 	$H.rotation_degrees.y = camrot_h
