@@ -28,27 +28,6 @@ extents = Vector3( 3.14364, 0.16657, 2.70353 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94777, 3.0238, 9.1221 )
-
-[node name="RemoteTransform" type="RemoteTransform" parent="Player"]
-remote_path = NodePath("../../Cam")
-update_rotation = false
-update_scale = false
-
-[node name="Cam" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94777, 3.0238, 9.1221 )
-script = ExtResource( 2 )
-
-[node name="H" type="Spatial" parent="Cam"]
-
-[node name="V" type="Spatial" parent="Cam/H"]
-
-[node name="Camera" type="ClippedCamera" parent="Cam/H/V"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181675, 0, 3.25458 )
-near = 0.01
-process_mode = 1
-
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13882, 5.59032, 0 )
 
@@ -82,3 +61,26 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4131, -0.126994, -7.22969 )
 
 [node name="KinematicBody" parent="Navigation" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1743, 1.79381, 3.55561 )
+
+[node name="Garbage" type="Spatial" parent="."]
+
+[node name="Player" parent="Garbage" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22808, 4.56385, 9.1221 )
+
+[node name="RemoteTransform" type="RemoteTransform" parent="Garbage/Player"]
+remote_path = NodePath("../../Cam")
+update_rotation = false
+update_scale = false
+
+[node name="Cam" type="Spatial" parent="Garbage"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22808, 4.56385, 9.1221 )
+script = ExtResource( 2 )
+
+[node name="H" type="Spatial" parent="Garbage/Cam"]
+
+[node name="V" type="Spatial" parent="Garbage/Cam/H"]
+
+[node name="Camera" type="ClippedCamera" parent="Garbage/Cam/H/V"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181675, 0, 3.25458 )
+near = 0.01
+process_mode = 1

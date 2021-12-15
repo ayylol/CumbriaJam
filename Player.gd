@@ -11,6 +11,7 @@ export var stain_time = 10.0
 export var stain_per = 0.01
 
 var max_strength = 15
+var can_move = true
 
 var _current_pushed = 0.0
 var _meter_percent_fill = 0.0
@@ -20,6 +21,8 @@ var _stain_lerp = 1.0
 
 var _shrunk_hitbox = Vector3(1,1,1)
 var _shrunk_mesh = Vector3(1,1,1)
+var _worker
+
 
 func _init():
 	_shrunk_hitbox=default_hitbox_size*0.3
@@ -39,10 +42,10 @@ func _physics_process(delta):
 	$Spatial.scale = _shrunk_mesh.linear_interpolate(default_mesh_size,_scale_lerp)
 	_scale_lerp=min(_scale_lerp+delta/decompress_time,1.0)
 	
-
-	
-	#print(_meter_percent_fill)
-	#print(_current_pushed)
+	if _worker != null:
+		global_transform.origin = _worker.global_transform.origin+Vector3(0,0,1.5)
+	print(_meter_percent_fill)
+	print(_current_pushed)
 	#print(_scale_lerp)
 
 func hold():
@@ -51,13 +54,16 @@ func hold():
 
 func release(direction: Vector3):
 	#print("PUSHED!")
-	print(direction)
+	#print(direction)
 	_held=false
-	if _meter_percent_fill>0.0:
-		var _time_held
-		apply_central_impulse (direction*max_strength*_current_pushed)
-		_meter_percent_fill-=_current_pushed
-		_current_pushed=0.0
+	if _worker == null:
+		apply_central_impulse (direction*max_strength*_current_pushed)	
+	else:
+		if _worker.struggle(_current_pushed):
+			_worker = null
+			apply_central_impulse (direction*max_strength*_current_pushed)	
+	_meter_percent_fill-=_current_pushed
+	_current_pushed=0.0
 
 func compress():
 	_scale_lerp=0.0
@@ -65,3 +71,5 @@ func compress():
 func stain():
 	_stain_lerp=stain_per
  
+func captured(worker):
+	_worker = worker

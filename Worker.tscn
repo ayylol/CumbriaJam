@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Worker.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.8
 mid_height = 2.0
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.850999
+height = 1.98773
+
+[sub_resource type="CylinderShape" id=4]
+radius = 1.53602
+height = 1.51611
 
 [node name="KinematicBody" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -15,6 +23,19 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="PickupArea" type="Area" parent="."]
+transform = Transform( 1.02539, 0, 0, 0, 1.02539, 0, 0, 0, 1.02539, 0, -0.756, 0.738354 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PickupArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.311671, -1.48497 )
+shape = SubResource( 4 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="PickupArea" to="." method="_on_PickupArea_body_entered"]
