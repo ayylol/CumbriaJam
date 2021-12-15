@@ -20,12 +20,12 @@ func _physics_process(delta):
 	if _stunned >= stun_length:
 		current_speed = max_speed
 		_can_grab=true
+		
 	if path_node < path.size():
 		var direction = (path[path_node] - global_transform.origin)
 		if direction.length() < 1:
 			path_node += 1
 		else:
-			#print("Moving")
 			move_and_slide(direction.normalized() * current_speed, Vector3.UP)
 	
 func move_to(target_pos):
@@ -41,11 +41,11 @@ func _on_Timer_timeout():
 
 func struggle(amount):
 	if amount > grip:
-		return true
-		#grip = min(grip+0.1,0.9)
+		grip = min(grip+0.1,0.9)
 		current_speed=0.0
 		_stunned = 0.0
 		_can_grab = false
+		return true
 	return false
 
 

@@ -29,6 +29,9 @@ func _init():
 	_shrunk_mesh=default_mesh_size*0.3
 
 func _physics_process(delta):
+	if _worker != null:
+		global_transform.origin = _worker.global_transform.origin+Vector3(0,0,1.5)
+	
 	#Updating stain variables
 	_stain_lerp=min(_stain_lerp+delta/stain_time,1.0)
 	
@@ -42,8 +45,7 @@ func _physics_process(delta):
 	$Spatial.scale = _shrunk_mesh.linear_interpolate(default_mesh_size,_scale_lerp)
 	_scale_lerp=min(_scale_lerp+delta/decompress_time,1.0)
 	
-	if _worker != null:
-		global_transform.origin = _worker.global_transform.origin+Vector3(0,0,1.5)
+
 	print(_meter_percent_fill)
 	print(_current_pushed)
 	#print(_scale_lerp)
