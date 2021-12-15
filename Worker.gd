@@ -1,7 +1,7 @@
 extends KinematicBody
 
-export var grip = 0.2
-export var stun_length = 10.0
+export var max_grip = 0.2
+export var stun_length = 5.0
 
 var path = []
 var path_node = 0
@@ -14,6 +14,7 @@ onready var _stunned = stun_length
 onready var current_speed = max_speed
 onready var nav = get_parent()
 onready var player = $"../../Garbage/Player"
+onready var grip = max_grip
 
 func _physics_process(delta):
 	_stunned = min(_stunned + delta, stun_length)
@@ -41,11 +42,13 @@ func _on_Timer_timeout():
 
 func struggle(amount):
 	if amount > grip:
-		grip = min(grip+0.1,0.9)
+		max_grip = min(grip+0.1,0.9)
+		grip=max_grip
 		current_speed=0.0
 		_stunned = 0.0
 		_can_grab = false
 		return true
+	grip-=amount
 	return false
 
 
