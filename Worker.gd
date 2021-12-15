@@ -56,4 +56,3 @@ func _on_PickupArea_body_entered(body):
 	if body.get_parent().get_name()=="Garbage":
 		if body.get_name()=="Player" and _can_grab:
 			body.captured(self)
-	#print(str(body.get_parent().get_name())+"ENTERED AREA")

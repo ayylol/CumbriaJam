@@ -30,7 +30,7 @@ func _init():
 
 func _physics_process(delta):
 	if _worker != null:
-		global_transform.origin = _worker.global_transform.origin+Vector3(0,0,1.5)
+		global_transform.origin = _worker.global_transform.origin-_worker.global_transform.basis.z*1.5
 	
 	#Updating stain variables
 	_stain_lerp=min(_stain_lerp+delta/stain_time,1.0)
