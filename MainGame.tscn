@@ -65,7 +65,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1743, 1.79381, 3.55561 )
 [node name="Garbage" type="Spatial" parent="."]
 
 [node name="Player" parent="Garbage" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7017, 2.85987, 8.87347 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17984, 4.73842, 8.87347 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Garbage/Player"]
 remote_path = NodePath("../../Cam")
@@ -73,7 +73,7 @@ update_rotation = false
 update_scale = false
 
 [node name="Cam" type="Spatial" parent="Garbage"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7017, 2.85987, 8.87347 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17984, 4.73842, 8.87347 )
 script = ExtResource( 2 )
 
 [node name="H" type="Spatial" parent="Garbage/Cam"]

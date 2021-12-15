@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/conveyor_new.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://textures/conveyor_new_aiStandardSurface4SG_Roughness.png" type="Texture" id=2]
 [ext_resource path="res://textures/conveyor_new_aiStandardSurface4SG_BaseColor.png" type="Texture" id=3]
 [ext_resource path="res://textures/conveyor_new_aiStandardSurface4SG_Normal.png" type="Texture" id=4]
-[ext_resource path="res://Assets/conveyor_belt.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://materials/moving_arrows.tres" type="Material" id=5]
+[ext_resource path="res://Assets/conveyor_belt_new.obj" type="ArrayMesh" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.973271, 0.797106, 1.75766 )
@@ -62,13 +63,13 @@ mesh = ExtResource( 1 )
 material/0 = SubResource( 4 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-constant_linear_velocity = Vector3( 0, 0, 10 )
+constant_linear_velocity = Vector3( 0, 0, -10 )
+
+[node name="conveyor_belt_new" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 6 )
+skeleton = NodePath("../CollisionShape")
+material/0 = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05362, 0.0211701 )
 shape = SubResource( 5 )
-
-[node name="conveyor_belt" type="MeshInstance" parent="StaticBody"]
-mesh = ExtResource( 5 )
-skeleton = NodePath("../CollisionShape")
-material/0 = null
