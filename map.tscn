@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://convator_belt.tscn" type="PackedScene" id=1]
-[ext_resource path="res://background_map.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/hydro_press_top.obj" type="ArrayMesh" id=3]
-[ext_resource path="res://Assets/hydro_press_bottom.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://big_tankard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://hydrolic_press.tscn" type="PackedScene" id=3]
+[ext_resource path="res://oil_pipe.tscn" type="PackedScene" id=4]
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000167847, 3.8147e-06, -0.0928421 )
@@ -12,23 +12,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000167847, 3.8147e-06, -0.09
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2103, 5.00596, 6.03082 )
 
 [node name="convertor" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, 6.32357 )
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, 0.618031, 10.2718 )
 
 [node name="convertor2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, -3.74709 )
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, 0.618031, 4.17099 )
 
 [node name="convertor4" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, -13.8476 )
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, 0.618031, -1.90249 )
 
 [node name="convertor3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, -0.279377, 16.3656 )
+transform = Transform( 1.66465, 0, 0, 0, 1.66465, 0, 0, 0, 1.66465, 0.463149, 0.618031, 16.3656 )
 
-[node name="hydro_press_bottom" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.761606, 0, 0, 0, 1, 0.548702, 3.84234, -10.6377 )
-mesh = ExtResource( 4 )
-material/0 = null
+[node name="hydrolic_press" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1.60841, 0, 0, 0, 1.60841, 0, 0, 0, 1.60841, 0.468063, 0.85861, -5.64456 )
 
-[node name="hydro_press_top" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.548702, 15.1772, -10.6377 )
-mesh = ExtResource( 3 )
-material/0 = null
+[node name="oil_pipe" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.84919, 0, 0, 0, 1.84919, 0, 0, 0, 1.84919, 0.465441, 0, 16.7308 )

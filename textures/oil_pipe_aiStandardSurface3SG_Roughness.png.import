@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/can_v5_can_Roughness.png-3f6cae049cb71c452bb698c00bb841ca.s3tc.stex"
-path.etc2="res://.import/can_v5_can_Roughness.png-3f6cae049cb71c452bb698c00bb841ca.etc2.stex"
+path.s3tc="res://.import/oil_pipe_aiStandardSurface3SG_Roughness.png-7d0edd9812aef323b1fd39ba14b1c181.s3tc.stex"
+path.etc2="res://.import/oil_pipe_aiStandardSurface3SG_Roughness.png-7d0edd9812aef323b1fd39ba14b1c181.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/can_v5_can_Roughness.png"
-dest_files=[ "res://.import/can_v5_can_Roughness.png-3f6cae049cb71c452bb698c00bb841ca.s3tc.stex", "res://.import/can_v5_can_Roughness.png-3f6cae049cb71c452bb698c00bb841ca.etc2.stex" ]
+source_file="res://textures/oil_pipe_aiStandardSurface3SG_Roughness.png"
+dest_files=[ "res://.import/oil_pipe_aiStandardSurface3SG_Roughness.png-7d0edd9812aef323b1fd39ba14b1c181.s3tc.stex", "res://.import/oil_pipe_aiStandardSurface3SG_Roughness.png-7d0edd9812aef323b1fd39ba14b1c181.etc2.stex" ]
 
 [params]
 

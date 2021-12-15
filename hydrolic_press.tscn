@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/hydro_press_bot.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/hydro_press_top.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://textures/hydro_press_top_aiStandardSurface1SG_Roughness.png" type="Texture" id=3]
+[ext_resource path="res://textures/hydro_press_bot_aiStandardSurface2SG_BaseColor.png" type="Texture" id=4]
+[ext_resource path="res://textures/hydro_press_top_aiStandardSurface1SG_Normal.png" type="Texture" id=5]
+[ext_resource path="res://textures/hydro_press_bot_aiStandardSurface2SG_Normal.png" type="Texture" id=6]
+[ext_resource path="res://textures/hydro_press_top_aiStandardSurface1SG_BaseColor.png" type="Texture" id=7]
+[ext_resource path="res://textures/hydro_press_bot_aiStandardSurface2SG_Roughness.png" type="Texture" id=8]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.295378
+height = 0.46953
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 4 )
+roughness_texture = ExtResource( 8 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 6 )
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.298626
+height = 3.0375
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.123925, 0.532413, 1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.682838, 0.362891, 1.40243 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 7 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 5 )
+
+[node name="hydrolic_press" type="Spatial"]
+transform = Transform( 1.86543, 0, -0.0616547, 0, 1.86645, 0, 0.0616547, 0, 1.86543, 0, 0, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5347, -0.00570258, 1.236 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55715, -0.00570258, 1.10519 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46426, -0.00570258, -1.23705 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63666, -0.00570258, -1.11571 )
+shape = SubResource( 1 )
+
+[node name="hydro_press_bot" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 1 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6343, 1.6118, -1.10962 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54584, 1.6118, 1.23101 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56414, 1.6118, 1.09961 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46341, 1.6118, -1.23863 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4745, 2.5079, -0.0881767 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60483, 2.51505, -0.0742433 )
+shape = SubResource( 3 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 0.999227, 0, 0.0393121, 0, 1, 0, -0.0393121, 0, 0.999227, -0.0519903, 3.22019, 0.0337402 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1.17274, 0, 0.0461385, 0, 1.76287, 0, -0.0388895, 0, 0.988485, -0.0434533, 5.01164, -0.0373966 )
+shape = SubResource( 4 )
+
+[node name="hydro_press_top" type="MeshInstance" parent="KinematicBody"]
+mesh = ExtResource( 2 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 6 )

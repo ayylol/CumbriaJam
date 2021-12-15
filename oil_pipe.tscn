@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/oil_pipe.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://textures/oil_pipe_aiStandardSurface3SG_BaseColor.png" type="Texture" id=2]
+[ext_resource path="res://textures/oil_pipe_aiStandardSurface3SG_Roughness.png" type="Texture" id=3]
+[ext_resource path="res://textures/oil_pipe_aiStandardSurface3SG_Normal.png" type="Texture" id=4]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.233677
+height = 4.25051
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.226238
+height = 2.42192
+
+[node name="oil_pipe" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26213, 1.88303, 1.34907 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26473, 1.93475, -1.48225 )
+shape = SubResource( 1 )
+
+[node name="oil_pipe" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 1 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1.09024, 0, 0, 0, -0.0176194, 1.0901, 0, -1.0901, -0.0176194, 0.0866489, 4.25734, -0.146898 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.0291538, 0.510941, -0.0482565, 0.00151309, 0.00887484, 1.08906, 1.08981, -0.00570329, -9.21832e-05, -0.596547, 4.30899, 1.34074 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.0223495, 0.39169, -0.0369937, 0.00151309, 0.00887484, 1.08906, 1.08981, -0.00570329, -9.21832e-05, 0.681928, 4.30899, -1.46853 )
+shape = SubResource( 3 )

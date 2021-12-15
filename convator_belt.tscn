@@ -1,89 +1,73 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://conveyer_sides.tres" type="Material" id=1]
-[ext_resource path="res://conveyer_legs.tres" type="Material" id=2]
+[ext_resource path="res://Assets/conveyor_new.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://textures/conveyor_new_aiStandardSurface4SG_Roughness.png" type="Texture" id=2]
+[ext_resource path="res://textures/conveyor_new_aiStandardSurface4SG_BaseColor.png" type="Texture" id=3]
+[ext_resource path="res://textures/conveyor_new_aiStandardSurface4SG_Normal.png" type="Texture" id=4]
+[ext_resource path="res://Assets/conveyor_belt.obj" type="ArrayMesh" id=5]
 
-[sub_resource type="BoxShape" id=4]
-
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="CylinderMesh" id=5]
-
-[sub_resource type="CubeMesh" id=1]
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.415686, 0.415686, 0.415686, 1 )
-ao_enabled = true
-ao_light_affect = 0.0
-ao_on_uv2 = false
-ao_texture_channel = 0
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.973271, 0.797106, 1.75766 )
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.14332, 0.184514, 0.191056 )
+extents = Vector3( 0.0646823, 0.0848085, 1.7628 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.0646969, 0.329595, 0.444561 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 3 )
+roughness_texture = ExtResource( 2 )
+normal_enabled = true
+normal_scale = 2.88
+normal_texture = ExtResource( 4 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.810066, 0.0593832, 1.80986 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="Collisions" type="StaticBody" parent="."]
+[node name="StaticBody2" type="StaticBody" parent="."]
 
-[node name="Wall1" type="CollisionShape" parent="Collisions"]
-transform = Transform( 0.110116, 0, 0, 0, 0.48095, 0, 0, 0, 3.03417, -1.15338, 2.47106, 0.0484618 )
-shape = SubResource( 4 )
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00912094, 1.27632, 0 )
+shape = SubResource( 1 )
 
-[node name="Wall2" type="CollisionShape" parent="Collisions"]
-transform = Transform( 0.110116, 0, 0, 0, 0.48095, 0, 0, 0, 3.01108, 1.193, 2.47087, 0.0639093 )
-shape = SubResource( 4 )
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.916013, 2.13049, 0.00166959 )
+shape = SubResource( 2 )
 
-[node name="Spatial" type="Spatial" parent="Collisions"]
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88727, 2.13049, 0.00166959 )
+shape = SubResource( 2 )
 
-[node name="MeshInstance3" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 0.110116, 0, 0, 0, 0.48095, 0, 0, 0, 3.01794, -1.15891, 2.46324, 0.0593033 )
-mesh = SubResource( 3 )
-skeleton = NodePath("../..")
-material/0 = ExtResource( 1 )
+[node name="CollisionShape4" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.916794, 0.136924, 1.31909 )
+shape = SubResource( 3 )
 
-[node name="MeshInstance4" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 0.1, 0, 0, 0, 1.5399, 0, 0, 0, 0.1, -0.892112, 0.728132, 2.66096 )
-material_override = ExtResource( 2 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../MeshInstance3")
-material/0 = null
+[node name="CollisionShape5" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.916794, 0.136924, -1.31418 )
+shape = SubResource( 3 )
 
-[node name="MeshInstance5" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 0.1, 0, 0, 0, 1.5399, 0, 0, 0, 0.1, 0.950126, 0.728132, 2.66096 )
-material_override = ExtResource( 2 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../MeshInstance3")
-material/0 = null
+[node name="CollisionShape6" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.885242, 0.136924, -1.31418 )
+shape = SubResource( 3 )
 
-[node name="MeshInstance6" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 0.1, 0, 0, 0, 1.5399, 0, 0, 0, 0.1, -0.892112, 0.728132, -2.61474 )
-material_override = ExtResource( 2 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../MeshInstance3")
-material/0 = null
+[node name="CollisionShape7" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.885242, 0.136924, 1.31772 )
+shape = SubResource( 3 )
 
-[node name="MeshInstance7" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 0.1, 0, 0, 0, 1.5399, 0, 0, 0, 0.1, 0.950126, 0.728132, -2.61474 )
-material_override = ExtResource( 2 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../MeshInstance3")
-material/0 = null
-
-[node name="MeshInstance2" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 0.110116, 0, 0, 0, 0.48095, 0, 0, 0, 3.01794, 1.18278, 2.46324, 0.0593033 )
-mesh = SubResource( 3 )
-skeleton = NodePath("../..")
-material/0 = ExtResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Collisions/Spatial"]
-transform = Transform( 1.08643, 0, 0, 0, 0.125919, 0, 0, 0, 3.02718, 0, 2.22982, 0 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 6 )
+[node name="conveyor_new" type="MeshInstance" parent="StaticBody2"]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 4 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-constant_linear_velocity = Vector3( 0, 0, 3 )
 
-[node name="BeltCollision" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 7.41026, 0, 0, 0, 1.29002, 0, 0, 0, 16.1007, 0.0220086, 2.12215, 0.0339365 )
-shape = SubResource( 2 )
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05362, 0.0211701 )
+shape = SubResource( 5 )
+
+[node name="conveyor_belt" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 5 )
+skeleton = NodePath("../CollisionShape")
+material/0 = null
