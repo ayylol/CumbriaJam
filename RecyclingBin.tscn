@@ -35,3 +35,4 @@ shape = SubResource( 3 )
 
 [connection signal="body_entered" from="BinHit" to="." method="_on_BinHit_body_entered"]
 [connection signal="body_entered" from="WorkerHit" to="." method="_on_WorkerHit_body_entered"]
+[connection signal="body_exited" from="WorkerHit" to="." method="_on_WorkerHit_body_exited"]

@@ -15,10 +15,10 @@ export var stain_per = 0.01
 
 var max_strength = 15
 var can_move = true
+var held = false
 
 var _current_pushed = 0.0
 var _meter_percent_fill = 0.0
-var _held = false
 var _scale_lerp = 1.0
 var _stain_lerp = 1.0
 
@@ -41,7 +41,7 @@ func _physics_process(delta):
 	
 	#updating push variables
 	_meter_percent_fill= min(_meter_percent_fill+(delta/meter_fill_multipliyer)*_stain_lerp, pow(_scale_lerp,2))
-	if _held:
+	if held:
 		_current_pushed = min(_current_pushed+(delta/pressure_fill_multipliyer)*_stain_lerp, _meter_percent_fill)
 	
 	#Updating Crushing variables
@@ -56,12 +56,12 @@ func _physics_process(delta):
 
 func hold():
 	#print("HELD")
-	_held = true
+	held = true
 
 func release(direction: Vector3):
 	#print("PUSHED!")
 	#print(direction)
-	_held=false
+	held=false
 	match state:
 		State.CAPTURED:
 			if _worker.struggle(_current_pushed):

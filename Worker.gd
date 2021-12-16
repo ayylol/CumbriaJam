@@ -33,9 +33,10 @@ onready var PerceptionTimer = $PerceptionTimer
 func _ready():
 	for point in $"../NavMesh/PointsOfInterest".get_children():
 		points_of_interest.push_back(point)
-		
-	#for bin in $"../Bins".get_children():
-	#	points_of_interest.push_back(point)
+	
+	for bin in $"../NavMesh/Bins".get_children():
+		recycling_bins.push_back(bin)
+	
 	_target = points_of_interest[0]
 
 func _physics_process(delta):
@@ -88,10 +89,14 @@ func _on_PickupArea_body_entered(body):
 		if state != State.STUNNED:
 			_target = points_of_interest[0]
 			body.captured(self)
+			recycling_bins.sort_custom(self, "length_comparison")
+			_target=recycling_bins[0]
 			state = State.DISPOSING
 
 
 func _on_StunTimer_timeout():
+	points_of_interest.shuffle()
+	_target = points_of_interest[0]
 	state = State.SEARCHING
 	MoveTimer.start()
 
@@ -115,5 +120,7 @@ func _on_PerceptionTimer_timeout():
 	state = State.SEARCHING
 
 func length_comparison(a, b):
-	pass
-	#if typeof(a)
+	if a.get_class()=="StaticBody" and b.get_class()=="StaticBody":
+		return ((a.global_transform.origin-global_transform.origin).length() <
+			(b.global_transform.origin-global_transform.origin).length())
+	return false
