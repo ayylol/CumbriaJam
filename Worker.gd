@@ -1,34 +1,53 @@
 extends KinematicBody
 
+enum State {
+	SEARCHING,
+	CHASING,
+	DISPOSING,
+	STUNNED,
+}
+
 export var max_grip = 0.2
 export var stun_length = 5.0
+export var perception_time = 2.5
 
 var path = []
 var path_node = 0
-
 var max_speed = 4.0
+var pointsOfInterest = []
 
-var _can_grab = true
+var _target
 
-onready var _stunned = stun_length
+onready var state = State.SEARCHING
 onready var current_speed = max_speed
-onready var nav = get_parent()
-onready var player = $"../../Garbage/Player"
 onready var grip = max_grip
+onready var nav = get_parent()
+onready var Player = $"../../Garbage/Player"
+onready var MoveTimer = $MoveTimer
+onready var StunTimer = $StunTimer
+onready var PerceptionTimer = $PerceptionTimer
+
+
+func _ready():
+	for point in $"../PointsOfInterest".get_children():
+		#print(point)
+		pointsOfInterest.push_back(point)
+		
+	_target = pointsOfInterest[0]
 
 func _physics_process(delta):
-	_stunned = min(_stunned + delta, stun_length)
-	if _stunned >= stun_length:
-		current_speed = max_speed
-		_can_grab=true
-		
-	if path_node < path.size():
-		var direction = (path[path_node] - global_transform.origin)
-		if direction.length() < 1:
-			path_node += 1
-		else:
-			move_and_slide(direction.normalized() * current_speed, Vector3.UP)
-	
+	#print(state)
+	if state == State.STUNNED:
+		pass
+	else:			
+		if path_node < path.size():
+			var direction = (path[path_node] - global_transform.origin)
+			if direction.length() < 1:
+				path_node += 1
+			else:
+				move_and_slide(direction.normalized() * current_speed, Vector3.UP)
+
+
 func move_to(target_pos):
 	#print("Calculating path to" + str(target_pos))
 	path = nav.get_simple_path(global_transform.origin, target_pos)
@@ -37,16 +56,28 @@ func move_to(target_pos):
 	
 
 
-func _on_Timer_timeout():
-	move_to(player.global_transform.origin)
+func _on_MoveTimer_timeout():
+	match state:
+		State.CHASING:
+			pass
+		State.DISPOSING:
+			pass
+		State.SEARCHING:
+			if (pointsOfInterest[0].global_transform.origin-global_transform.origin).length()<4.0:
+				pointsOfInterest.shuffle()
+				_target = pointsOfInterest[0]
+	
+	#print(_target)
+	move_to(_target.global_transform.origin)
+
 
 func struggle(amount):
 	if amount > grip:
 		max_grip = min(grip+0.1,0.9)
 		grip=max_grip
-		current_speed=0.0
-		_stunned = 0.0
-		_can_grab = false
+		state = State.STUNNED
+		StunTimer.start(stun_length)
+		MoveTimer.stop()
 		return true
 	grip-=amount
 	return false
@@ -54,5 +85,33 @@ func struggle(amount):
 
 func _on_PickupArea_body_entered(body):
 	if body.get_parent().get_name()=="Garbage":
-		if body.get_name()=="Player" and _can_grab:
+		if state != State.STUNNED:
+			#_target = body
+			_target = pointsOfInterest[0]
 			body.captured(self)
+			state = State.DISPOSING
+
+
+func _on_StunTimer_timeout():
+	state = State.SEARCHING
+	MoveTimer.start()
+
+
+func _on_SenseRange_body_entered(body):
+	if body.get_parent().get_name()=="Garbage" && state == State.SEARCHING:
+		_target = body
+		state = State.CHASING
+
+
+func _on_SenseRange_body_exited(body):
+	#print(body.to_string() + " " + _target.to_string())
+	if state == State.CHASING and body.get_name()==_target.get_name():
+		#print("Timer Start")
+		PerceptionTimer.start(perception_time)
+
+
+func _on_PerceptionTimer_timeout():
+	print("GONE")
+	_target = pointsOfInterest[0]
+	state = State.SEARCHING
+

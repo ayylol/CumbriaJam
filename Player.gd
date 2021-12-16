@@ -1,7 +1,10 @@
 extends RigidBody
 
-#export var push_cooldown = 1.5
-export var max_pushes = 4
+enum State{
+	FREE,
+	CAPTURED
+}
+
 export var meter_fill_multipliyer = 5.0
 export var pressure_fill_multipliyer = 2.5
 export var default_hitbox_size = Vector3(1,1,1)
@@ -23,13 +26,14 @@ var _shrunk_hitbox = Vector3(1,1,1)
 var _shrunk_mesh = Vector3(1,1,1)
 var _worker
 
+onready var state = State.FREE
 
 func _init():
 	_shrunk_hitbox=default_hitbox_size*0.3
 	_shrunk_mesh=default_mesh_size*0.3
 
 func _physics_process(delta):
-	if _worker != null:
+	if state == State.CAPTURED:
 		global_transform.origin = _worker.global_transform.origin-_worker.global_transform.basis.z*1.5
 	
 	#Updating stain variables
@@ -46,8 +50,8 @@ func _physics_process(delta):
 	_scale_lerp=min(_scale_lerp+delta/decompress_time,1.0)
 	
 
-	print(_meter_percent_fill)
-	print(_current_pushed)
+	#print(_meter_percent_fill)
+	#print(_current_pushed)
 	#print(_scale_lerp)
 
 func hold():
@@ -58,12 +62,14 @@ func release(direction: Vector3):
 	#print("PUSHED!")
 	#print(direction)
 	_held=false
-	if _worker == null:
-		apply_central_impulse (direction*max_strength*_current_pushed)	
-	else:
-		if _worker.struggle(_current_pushed):
-			_worker = null
-			apply_central_impulse (direction*max_strength*_current_pushed)	
+	match state:
+		State.CAPTURED:
+			if _worker.struggle(_current_pushed):
+				apply_central_impulse (direction*max_strength*_current_pushed)
+				state = State.FREE	
+		State.FREE:
+			apply_central_impulse (direction*max_strength*_current_pushed)
+
 	_meter_percent_fill-=_current_pushed
 	_current_pushed=0.0
 
@@ -74,4 +80,7 @@ func stain():
 	_stain_lerp=stain_per
  
 func captured(worker):
-	_worker = worker
+	if state == State.FREE:
+		_current_pushed=0.0
+		_worker = worker
+		state = State.CAPTURED
