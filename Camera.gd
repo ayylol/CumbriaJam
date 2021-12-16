@@ -3,13 +3,14 @@ extends Spatial
 var camrot_h = 0
 var camrot_v = 0
 
-var _mouseTrapped = false
+var _mouseTrapped = true
 var _player 
 
 # From Tutorial: https://www.youtube.com/watch?v=Bch-OagnX1E
 func _ready():
 	_player = get_parent().get_node("Player")
 	$H/V/Camera.add_exception(_player)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel") and _mouseTrapped:

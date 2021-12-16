@@ -5,8 +5,8 @@ enum State{
 	CAPTURED
 }
 
-export var meter_fill_multipliyer = 5.0
-export var pressure_fill_multipliyer = 2.5
+export var meter_fill_multipliyer = 3.0
+export var pressure_fill_multipliyer = 1.0
 export var default_hitbox_size = Vector3(1,1,1)
 export var default_mesh_size = Vector3(0.319,0.319,0.319)
 export var decompress_time = 8.0
@@ -84,3 +84,7 @@ func captured(worker):
 		_current_pushed=0.0
 		_worker = worker
 		state = State.CAPTURED
+		
+func die():
+	get_tree().reload_current_scene()
+

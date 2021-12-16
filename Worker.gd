@@ -9,12 +9,14 @@ enum State {
 
 export var max_grip = 0.2
 export var stun_length = 5.0
-export var perception_time = 2.5
+export var perception_time = 8.0
 
 var path = []
 var path_node = 0
-var max_speed = 4.0
-var pointsOfInterest = []
+var max_speed = 6.0
+
+var points_of_interest = []
+var recycling_bins = []
 
 var _target
 
@@ -30,9 +32,9 @@ onready var PerceptionTimer = $PerceptionTimer
 
 func _ready():
 	for point in $"../PointsOfInterest".get_children():
-		pointsOfInterest.push_back(point)
+		points_of_interest.push_back(point)
 		
-	_target = pointsOfInterest[0]
+	_target = points_of_interest[0]
 
 func _physics_process(delta):
 	if state == State.STUNNED:
@@ -60,9 +62,9 @@ func _on_MoveTimer_timeout():
 		State.DISPOSING:
 			pass
 		State.SEARCHING:
-			if (pointsOfInterest[0].global_transform.origin-global_transform.origin).length()<4.0:
-				pointsOfInterest.shuffle()
-				_target = pointsOfInterest[0]
+			if (points_of_interest[0].global_transform.origin-global_transform.origin).length()<4.0:
+				points_of_interest.shuffle()
+				_target = points_of_interest[0]
 	
 	move_to(_target.global_transform.origin)
 
@@ -93,10 +95,13 @@ func _on_StunTimer_timeout():
 
 
 func _on_SenseRange_body_entered(body):
-	if body.get_parent().get_name()=="Garbage" && state == State.SEARCHING:
+	if body.get_parent().get_name()=="Garbage" and state == State.SEARCHING:
 		_target = body
 		state = State.CHASING
-
+	elif (body == _target and state == State.CHASING 
+		and not PerceptionTimer.is_stopped()):
+		PerceptionTimer.stop()
+		
 
 func _on_SenseRange_body_exited(body):
 	if state == State.CHASING and body.get_name()==_target.get_name():

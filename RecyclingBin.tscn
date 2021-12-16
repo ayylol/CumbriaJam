@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://RecyclingBin.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.08957, 1.20441, 1.4242 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SphereShape" id=3]
+radius = 3.82259
+
+[node name="StaticBody" type="StaticBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1.75453, 0, 0, 0, 1, 0, 0, 0, 1.15974, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="BinHit" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="BinHit"]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="WorkerHit" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="WorkerHit"]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="BinHit" to="." method="_on_BinHit_body_entered"]
+[connection signal="body_entered" from="WorkerHit" to="." method="_on_WorkerHit_body_entered"]
