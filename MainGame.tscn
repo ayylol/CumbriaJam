@@ -7,6 +7,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.5353, 0.567163, 0.478514 )
 
 [sub_resource type="CubeMesh" id=5]
 
@@ -36,6 +37,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13882, 5.59032, 0 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+transform = Transform( 0.530495, 0, 0, 0, 0.530495, 0, 0, 0, 0.530495, 0, 0, 0 )
 mesh = SubResource( 5 )
 skin = SubResource( 6 )
 material/0 = null
@@ -80,7 +82,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9496, 0, -35.1463 )
 [node name="Garbage" type="Spatial" parent="."]
 
 [node name="Player" parent="Garbage" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0152, 3.89744, 18.5685 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.50017, 4.54238, 7.01507 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Garbage/Player"]
 remote_path = NodePath("../../Cam")
@@ -88,7 +90,7 @@ update_rotation = false
 update_scale = false
 
 [node name="Cam" type="Spatial" parent="Garbage"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0152, 3.89744, 18.5685 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.50017, 4.54238, 7.01507 )
 script = ExtResource( 2 )
 
 [node name="H" type="Spatial" parent="Garbage/Cam"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/hydro_press_bot.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/hydro_press_top.obj" type="ArrayMesh" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://textures/hydro_press_bot_aiStandardSurface2SG_Normal.png" type="Texture" id=6]
 [ext_resource path="res://textures/hydro_press_top_aiStandardSurface1SG_BaseColor.png" type="Texture" id=7]
 [ext_resource path="res://textures/hydro_press_bot_aiStandardSurface2SG_Roughness.png" type="Texture" id=8]
+[ext_resource path="res://hydrolic_press.gd" type="Script" id=9]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.295378
@@ -28,7 +29,10 @@ height = 3.0375
 extents = Vector3( 0.123925, 0.532413, 1 )
 
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 0.682838, 0.362891, 1.40243 )
+extents = Vector3( 0.631049, 0.389903, 1.40243 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 1.81302, 0.715442, 1.42835 )
 
 [sub_resource type="SpatialMaterial" id=6]
 albedo_texture = ExtResource( 7 )
@@ -37,8 +41,19 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 5 )
 
+[sub_resource type="CylinderShape" id=8]
+radius = 0.233976
+height = 1.06744
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.531902, 0.0509732, 1.16782 )
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 0.267519, 0.400681, 0.35395 )
+
 [node name="hydrolic_press" type="Spatial"]
 transform = Transform( 1.86543, 0, -0.0616547, 0, 1.86645, 0, 0.0616547, 0, 1.86543, 0, 0, 0 )
+script = ExtResource( 9 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
@@ -88,16 +103,54 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60483, 2.51505, -0.0742433 
 shape = SubResource( 3 )
 
 [node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
 transform = Transform( 0.999227, 0, 0.0393121, 0, 1, 0, -0.0393121, 0, 0.999227, -0.0519903, 3.22019, 0.0337402 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="KinematicBody"]
-transform = Transform( 1.17274, 0, 0.0461385, 0, 1.76287, 0, -0.0388895, 0, 0.988485, -0.0434533, 5.01164, -0.0373966 )
-shape = SubResource( 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00120374, 5.08049, -0.0364205 )
+shape = SubResource( 9 )
 
 [node name="hydro_press_top" type="MeshInstance" parent="KinematicBody"]
 mesh = ExtResource( 2 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56575, 3.63689, 1.08921 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56013, 3.63689, 1.19252 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4886, 3.63689, -1.24489 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63728, 3.63689, -1.14158 )
+shape = SubResource( 8 )
+
+[node name="Area" type="Area" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.83529, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody/Area"]
+transform = Transform( 0.999675, 0, 0.0254791, 0, 1, 0, -0.0254791, 0, 0.999675, -0.0376294, -0.00485539, 0.0212724 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0602329, 4.03195, 0.00199077 )
+shape = SubResource( 10 )
+
+[node name="RecoverTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CrushTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="KinematicBody/Area" to="." method="_on_Area_body_entered"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_RecoverTimer_timeout"]
+[connection signal="timeout" from="CrushTimer" to="." method="_on_CrushTimer_timeout"]
