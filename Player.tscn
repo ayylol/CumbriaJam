@@ -5,7 +5,6 @@
 [ext_resource path="res://textures/can_v5_can_BaseColor.png" type="Texture" id=3]
 [ext_resource path="res://Assets/can_final.obj" type="ArrayMesh" id=4]
 
-
 [sub_resource type="CylinderShape" id=3]
 radius = 0.164619
 height = 0.596457
