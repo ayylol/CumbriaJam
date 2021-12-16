@@ -31,9 +31,11 @@ onready var PerceptionTimer = $PerceptionTimer
 
 
 func _ready():
-	for point in $"../PointsOfInterest".get_children():
+	for point in $"../NavMesh/PointsOfInterest".get_children():
 		points_of_interest.push_back(point)
 		
+	#for bin in $"../Bins".get_children():
+	#	points_of_interest.push_back(point)
 	_target = points_of_interest[0]
 
 func _physics_process(delta):
@@ -84,7 +86,7 @@ func struggle(amount):
 func _on_PickupArea_body_entered(body):
 	if body.get_parent().get_name()=="Garbage":
 		if state != State.STUNNED:
-			_target = pointsOfInterest[0]
+			_target = points_of_interest[0]
 			body.captured(self)
 			state = State.DISPOSING
 
@@ -109,6 +111,9 @@ func _on_SenseRange_body_exited(body):
 
 
 func _on_PerceptionTimer_timeout():
-	_target = pointsOfInterest[0]
+	_target = points_of_interest[0]
 	state = State.SEARCHING
 
+func length_comparison(a, b):
+	pass
+	#if typeof(a)

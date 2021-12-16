@@ -34,7 +34,7 @@ func _init():
 
 func _physics_process(delta):
 	if state == State.CAPTURED:
-		global_transform.origin = _worker.global_transform.origin-_worker.global_transform.basis.z*1.5
+		global_transform.origin = _worker.global_transform.origin-_worker.global_transform.basis.z*1.5+_worker.global_transform.basis.y*0.5
 	
 	#Updating stain variables
 	_stain_lerp=min(_stain_lerp+delta/stain_time,1.0)
