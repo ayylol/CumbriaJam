@@ -30,13 +30,11 @@ onready var PerceptionTimer = $PerceptionTimer
 
 func _ready():
 	for point in $"../PointsOfInterest".get_children():
-		#print(point)
 		pointsOfInterest.push_back(point)
 		
 	_target = pointsOfInterest[0]
 
 func _physics_process(delta):
-	#print(state)
 	if state == State.STUNNED:
 		pass
 	else:			
@@ -49,7 +47,6 @@ func _physics_process(delta):
 
 
 func move_to(target_pos):
-	#print("Calculating path to" + str(target_pos))
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	look_at_from_position(global_transform.origin, Vector3(target_pos.x, global_transform.origin.y, target_pos.z), Vector3.UP)
 	path_node = 0
@@ -67,7 +64,6 @@ func _on_MoveTimer_timeout():
 				pointsOfInterest.shuffle()
 				_target = pointsOfInterest[0]
 	
-	#print(_target)
 	move_to(_target.global_transform.origin)
 
 
@@ -86,7 +82,6 @@ func struggle(amount):
 func _on_PickupArea_body_entered(body):
 	if body.get_parent().get_name()=="Garbage":
 		if state != State.STUNNED:
-			#_target = body
 			_target = pointsOfInterest[0]
 			body.captured(self)
 			state = State.DISPOSING
@@ -104,14 +99,11 @@ func _on_SenseRange_body_entered(body):
 
 
 func _on_SenseRange_body_exited(body):
-	#print(body.to_string() + " " + _target.to_string())
 	if state == State.CHASING and body.get_name()==_target.get_name():
-		#print("Timer Start")
 		PerceptionTimer.start(perception_time)
 
 
 func _on_PerceptionTimer_timeout():
-	print("GONE")
 	_target = pointsOfInterest[0]
 	state = State.SEARCHING
 
