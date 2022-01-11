@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://convator_belt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://big_tankard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://hydrolic_press.tscn" type="PackedScene" id=3]
 [ext_resource path="res://oil_pipe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RecyclingBin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://walls.tscn" type="PackedScene" id=6]
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000167847, 3.8147e-06, -0.0928421 )
@@ -105,3 +107,103 @@ transform = Transform( 1.84919, 0, 0, 0, 1.84919, 0, 0, 0, 1.84919, 0.465441, 0,
 
 [node name="oil_pipe2" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1.84919, 0, -1.61661e-07, 0, 1.84919, 0, 1.61661e-07, 0, -1.84919, 10.0241, 0, -7.66408 )
+
+[node name="bin_group" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10104, -22.7876 )
+
+[node name="bin" parent="bin_group" instance=ExtResource( 5 )]
+
+[node name="bin2" parent="bin_group" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45886, 0, 0 )
+
+[node name="bin3" parent="bin_group" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0508, 0, 0 )
+
+[node name="bin4" parent="bin_group" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0354, 0, 0 )
+
+[node name="bin5" parent="bin_group" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2838, 0, 0 )
+
+[node name="bin6" parent="bin_group" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3636, 0, 0 )
+
+[node name="bin_group2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10104, 24.1362 )
+
+[node name="bin" parent="bin_group2" instance=ExtResource( 5 )]
+
+[node name="bin2" parent="bin_group2" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45886, 0, 0 )
+
+[node name="bin3" parent="bin_group2" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0508, 0, 0 )
+
+[node name="bin4" parent="bin_group2" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0354, 0, 0 )
+
+[node name="bin5" parent="bin_group2" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2838, 0, 0 )
+
+[node name="bin6" parent="bin_group2" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3636, 0, 0 )
+
+[node name="wall_group" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.781496, 3.52575 )
+
+[node name="wall" parent="wall_group" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 8.39996, -27.8875 )
+
+[node name="wall2" parent="wall_group" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.7934, 8.39996, -27.8875 )
+
+[node name="wall3" parent="wall_group" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37.5691, 8.39996, -27.8875 )
+
+[node name="wall4" parent="wall_group" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.353, 8.39996, -27.8875 )
+
+[node name="wall_group2" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.2201, -0.781496, -1.52486 )
+
+[node name="wall" parent="wall_group2" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 8.39996, -27.8875 )
+
+[node name="wall2" parent="wall_group2" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.7118, 8.39996, -27.8875 )
+
+[node name="wall3" parent="wall_group2" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37.4204, 8.39996, -27.8875 )
+
+[node name="wall4" parent="wall_group2" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.353, 8.39996, -27.8875 )
+
+[node name="wall_group3" type="Spatial" parent="."]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 19.345, -0.781496, -4.97712 )
+
+[node name="wall" parent="wall_group3" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 8.39996, -27.8875 )
+
+[node name="wall2" parent="wall_group3" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.8197, 8.39996, -27.8875 )
+
+[node name="wall3" parent="wall_group3" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37.5731, 8.39996, -27.8875 )
+
+[node name="wall4" parent="wall_group3" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.353, 8.39996, -27.8875 )
+
+[node name="wall_group4" type="Spatial" parent="."]
+transform = Transform( 1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, 1.81114, -0.781496, 8.68879 )
+
+[node name="wall" parent="wall_group4" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.444401, 8.39996, -27.8875 )
+
+[node name="wall2" parent="wall_group4" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 19.1453, 8.39996, -27.8875 )
+
+[node name="wall3" parent="wall_group4" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37.9028, 8.39996, -27.8875 )
+
+[node name="wall4" parent="wall_group4" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.353, 8.39996, -27.8875 )

@@ -72,10 +72,10 @@ material/0 = null
 [node name="Bins" type="Spatial" parent="Navigation/NavMesh"]
 
 [node name="RecyclingBin" parent="Navigation/NavMesh/Bins" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6446, 1.19527, -32.0287 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3247, 1.19527, -30.3245 )
 
 [node name="RecyclingBin2" parent="Navigation/NavMesh/Bins" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2235, 1.34555, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.8832, 1.34555, 0 )
 
 [node name="PointsOfInterest" type="Spatial" parent="Navigation/NavMesh"]
 
@@ -86,7 +86,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8095, 2.17756, 17.0773 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9496, 0, -35.1463 )
 
 [node name="Worker" parent="Navigation" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15784, 1.79381, -32.1243 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5772, 1.79381, -29.0019 )
 
 [node name="Worker2" parent="Navigation" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.034, 1.79381, 3.55561 )
@@ -94,7 +94,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.034, 1.79381, 3.55561 )
 [node name="Garbage" type="Spatial" parent="."]
 
 [node name="Player" parent="Garbage" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1992, 1.50805, -43.1076 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3465, 1.50805, -12.2868 )
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Garbage/Player"]
 remote_path = NodePath("../../Cam")
@@ -102,7 +102,7 @@ update_rotation = false
 update_scale = false
 
 [node name="Cam" type="Spatial" parent="Garbage"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1992, 1.50805, -43.1076 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3465, 1.50805, -12.2868 )
 script = ExtResource( 2 )
 
 [node name="H" type="Spatial" parent="Garbage/Cam"]
